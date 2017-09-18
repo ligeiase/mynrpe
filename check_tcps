@@ -1,0 +1,17 @@
+###############
+###check_ips###
+###############
+
+#!/bin/bash
+
+#if [ $# -ne 2 ]
+#then
+#echo ";Usage:$0 -w num1 -c num2";
+#exit 3
+#fi
+
+check_ips=`netstat -an | grep tcp | grep EST | wc -l`
+
+# echo $check_ips
+echo "tcp connected is $check_ips.|tcp_connected=$check_ips"
+exit 0

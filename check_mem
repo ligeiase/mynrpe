@@ -1,0 +1,13 @@
+###############
+###check_mem### 
+###############
+#!/bin/bash
+
+memt=`cat /proc/meminfo |grep MemTotal |awk '{printf $2}'`;
+memf=`cat /proc/meminfo |grep MemFree |awk '{printf $2}'`;
+memp=$(echo "scale=2; $memf * 100 / $memt"|bc);
+swapt=`cat /proc/meminfo |grep SwapTotal |awk '{printf $2}'`;
+swapf=`cat /proc/meminfo |grep SwapFree |awk '{printf $2}'`;
+swapp=$(echo "scale=2; $swapf * 100 / $swapt"|bc);
+echo "Memory Free: $memf of $memt, Swap Free: $swapf of $swapt |memfree=$memp%;;;0;100 swapfree=$swapp%;;;0;100";
+exit 0;
